@@ -1,22 +1,18 @@
-import psycopg2
-from psycopg2 import Error
-
+﻿import mysql.connector
+from mysql.connector import Error
 
 def conectar_banco():
-
+    """Conecta ao banco de dados sistema_escola"""
     try:
-
-        conexao = psycopg2.connect(
-            host="localhost",
-            database="escola",
-            user="postgres",
-            password="aluno",
-            port=5432
+        conexao = mysql.connector.connect(
+            host='localhost',
+            database='sistema_escola',
+            user='root',
+            password='',
+            port=3306
         )
-
+        print("✅ Conectado ao banco sistema_escola!")
         return conexao
-
     except Error as e:
-
-        print(f"Erro ao conectar ao PostgreSQL: {e}")
+        print(f"❌ Erro ao conectar: {e}")
         return None

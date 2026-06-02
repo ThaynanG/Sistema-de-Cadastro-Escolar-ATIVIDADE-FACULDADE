@@ -1,37 +1,31 @@
-from conexao import conectar_banco
-
+﻿from conexao import conectar_banco
 
 def cadastrar_aluno():
-
     conn = conectar_banco()
-
-    if conn:
-
-        cursor = conn.cursor()
-
-        print("\n--- Cadastro de Aluno ---")
-
-        nome = input("Nome: ")
-        data = input("Data de nascimento: ")
-        cpf = input("CPF: ")
-
+    if not conn:
+        return
+    
+    cursor = conn.cursor()
+    
+    print("\n" + "="*50)
+    print("        CADASTRO DE ALUNO")
+    print("="*50)
+    
+    nome = input("Nome completo: ").strip()
+    data = input("Data nascimento (AAAA-MM-DD): ").strip()
+    cpf = input("CPF (apenas números): ").strip()
+    email = input("Email: ").strip()
+    
+    try:
         sql = """
-        INSERT INTO alunos (nome, data_nascimento, cpf)
-        VALUES (%s, %s, %s)
+            INSERT INTO alunos (nome, data_nascimento, cpf, email)
+            VALUES (%s, %s, %s, %s)
         """
-
-        try:
-
-            cursor.execute(sql, (nome, data, cpf))
-            conn.commit()
-
-            print("\nAluno cadastrado com sucesso!")
-
-        except Exception as e:
-
-            print(f"Erro: {e}")
-
-        finally:
-
-            cursor.close()
-            conn.close()
+        cursor.execute(sql, (nome, data, cpf, email))
+        conn.commit()
+        print(f"\n✅ Aluno '{nome}' cadastrado com sucesso!")
+    except Exception as e:
+        print(f"\n❌ Erro ao cadastrar: {e}")
+    finally:
+        cursor.close()
+        conn.close()
