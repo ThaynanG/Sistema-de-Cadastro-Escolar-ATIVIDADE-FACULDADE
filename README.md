@@ -28,17 +28,7 @@ O objetivo foi implementar um sistema simples de **CRUD** (Create, Read, Update,
 
 ---
 
-## 📂 Estrutura do Projeto
-├── app_web.py          # Interface web inicial
-├── conexao.py          # Configuração de conexão com o banco
-├── insert.py           # Funções de CREATE
-├── listar_alunos.py    # Funções de READ
-├── update.py           # Funções de UPDATE
-├── delete.py           # Funções de DELETE
-├── pessoa.py           # Classe base para alunos e professores
-├── disciplina.py       # Classe para disciplinas
-├── main.py             # Arquivo principal para execução
-└── pycache/        # Cache de compilação do Python
+
 
 
 👨‍💻 Autor
